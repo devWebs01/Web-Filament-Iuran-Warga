@@ -47,8 +47,8 @@ class UserResource extends Resource
                         Forms\Components\TextInput::make('password')
                             ->password()
                             ->minLength(8)
-                            ->required(fn(string $context) => $context === 'create')
-                            ->dehydrated(fn($state) => filled($state)),
+                            ->required(fn (string $context) => $context === 'create')
+                            ->dehydrated(fn ($state) => filled($state)),
                         Forms\Components\TextInput::make('phone_number')
                             ->telRegex('/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\.\/0-9]*$/')
                             ->tel()
@@ -122,7 +122,7 @@ class UserResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->label('Status')
-                    ->formatStateUsing(fn($state) => $state ? 'Terhapus' : 'Aktif')
+                    ->formatStateUsing(fn ($state) => $state ? 'Terhapus' : 'Aktif')
                     ->sortable()
                     ->alignCenter()
                     ->toggleable(isToggledHiddenByDefault: true),

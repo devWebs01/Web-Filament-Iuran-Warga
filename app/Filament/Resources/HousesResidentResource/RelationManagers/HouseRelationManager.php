@@ -1,28 +1,20 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\HousesResidentResource\RelationManagers;
 
-use App\Filament\Resources\HouseResource\Pages;
-use App\Models\House;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 
-class HouseResource extends Resource
+class HouseRelationManager extends RelationManager
 {
-    protected static ?string $model = House::class;
+    protected static string $relationship = 'house';
 
-    protected static ?string $navigationGroup = 'Rumah';
-
-    protected static ?string $modelLabel = 'Rumah';
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
@@ -41,9 +33,10 @@ class HouseResource extends Resource
             ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
+            ->recordTitleAttribute('house_id')
             ->columns([
                 Tables\Columns\TextColumn::make('house_number')
                     ->searchable()
@@ -81,21 +74,5 @@ class HouseResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListHouses::route('/'),
-            'create' => Pages\CreateHouse::route('/create'),
-            'edit' => Pages\EditHouse::route('/{record}/edit'),
-        ];
     }
 }

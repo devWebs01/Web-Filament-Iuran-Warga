@@ -13,4 +13,9 @@ class House extends Model
         'house_number',
         'status',
     ];
+
+    public function house_residents()
+    {
+        return $this->hasMany(HouseResident::class);
+    }
 }
