@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\HouseResource\Pages;
+use App\Filament\Resources\HousesResidentResource\RelationManagers\ResidentRelationManager;
 use App\Models\House;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
@@ -86,7 +87,7 @@ class HouseResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ResidentRelationManager::class,
         ];
     }
 
